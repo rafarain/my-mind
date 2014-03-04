@@ -2,7 +2,7 @@
 <html lang="ru">
 		<head>
 			<meta charset="utf-8">
-			<title>my-mind</title>
+			<title>My mind</title>
 			<script src='https://cdn.firebase.com/v0/firebase.js'></script>
 			<script  src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js'></script>
 			<style>
@@ -13,13 +13,15 @@
 				background-attachment: fixed;}
 				h1 {
 				text-align : center;
-				border-width: thick;
-				border-style: dotted;
-				border-color: gold;
 				}
 			</style>
 		</head>
 		<body>
+  <div align="right" class="btn-group">
+  <button type="button" class="btn btn-default">Выход</button>
+  <button type="button" class="btn btn-default">Поиск</button>
+  <button type="button" class="btn btn-default">Настройки</button>
+  </div>
 			<h1>My-mind</h1>
 			<div id='messagesDiv'></div>
    			<input type='text' id='messageInput' placeholder='Message'>
@@ -28,12 +30,12 @@
 			      $('#messageInput').keypress(function (e) {
 			        if (e.keyCode === 13) {
 			          var messsage = $('#messageInput').val();
-			          myDataRef.push({text: messsage});
+			          var date = Date();
+			          myDataRef.push({text: messsage, date: date});
 			          $('#messageInput').val('');
 			        }
 			      });
 			      myDataRef.on('child_added', function(snapshot) {
-			      	debugger;
 			        var message = snapshot.val();
 			        displayChatMessage(message.text);
 			      });
